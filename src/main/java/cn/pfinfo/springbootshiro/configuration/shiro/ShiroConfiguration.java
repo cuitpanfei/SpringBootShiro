@@ -1,7 +1,7 @@
 /*
  * Copyright (C) 2017 Baidu, Inc. All Rights Reserved.
  */
-package cn.apopo.springbootshiro.configuration.shiro;
+package cn.pfinfo.springbootshiro.configuration.shiro;
 
 import java.util.LinkedHashMap;
 import java.util.Map;

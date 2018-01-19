@@ -1,7 +1,7 @@
 /*
  * Copyright (C) 2017 Baidu, Inc. All Rights Reserved.
  */
-package cn.apopo.springbootshiro.configuration.shiro;
+package cn.pfinfo.springbootshiro.configuration.shiro;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -18,10 +18,10 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
 
-import cn.apopo.springbootshiro.domain.Permission;
-import cn.apopo.springbootshiro.domain.Role;
-import cn.apopo.springbootshiro.domain.User;
-import cn.apopo.springbootshiro.service.IUserService;
+import cn.pfinfo.springbootshiro.entiry.Permission;
+import cn.pfinfo.springbootshiro.entiry.Role;
+import cn.pfinfo.springbootshiro.entiry.User;
+import cn.pfinfo.springbootshiro.service.IUserService;
 
 /**
  * 身份校验核心类

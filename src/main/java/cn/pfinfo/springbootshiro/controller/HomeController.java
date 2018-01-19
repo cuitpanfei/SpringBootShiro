@@ -1,7 +1,7 @@
 /*
  * Copyright (C) 2016 Baidu, Inc. All Rights Reserved.
  */
-package cn.apopo.springbootshiro.controller;
+package cn.pfinfo.springbootshiro.controller;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import cn.apopo.springbootshiro.domain.User;
+import cn.pfinfo.springbootshiro.entiry.User;
 
 /**
  * Created by qiaoshuang on 2016/12/30.

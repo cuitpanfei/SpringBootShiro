@@ -1,9 +1,9 @@
 <!DOCTYPE HTML>
-<html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
     <head>
         <title>Login</title>
         <!-- Custom Theme files -->
-        <link href="/css/style.css" rel="stylesheet" type="text/css" media="all"/>
+        <link href="@{~/css/style}" rel="stylesheet" type="text/css" media="all"/>
         <!-- Custom Theme files -->
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
@@ -28,6 +28,7 @@
                 <div class="forgot">
                     <input type="submit" value="登录" />
                 </div>
+                <h4 th:text="${msg}"></h4>
             </div>
         </div>
         <div class="copyright">
@@ -36,21 +37,3 @@
     </body>
 </html>
 
-<!--<!DOCTYPE html>-->
-<!--&lt;!&ndash;-->
-  <!--~ Copyright (C) 2016 Baidu, Inc. All Rights Reserved.-->
-  <!--&ndash;&gt;-->
-<!--<html lang="en" xmlns:th="http://www.thymeleaf.org">-->
-<!--<head>-->
-    <!--<meta charset="UTF-8" />-->
-    <!--<title>Login</title>-->
-<!--</head>-->
-<!--<body>-->
-<!--<form action="" method="post">-->
-    <!--<p>账号：<input type="text" name="username" value="admin"/></p>-->
-    <!--<p>密码：<input type="text" name="password" value="123456"/></p>-->
-    <!--<p><input type="submit" value="登录"/></p>-->
-<!--</form>-->
-<!--错误信息：<h4 th:text="${msg}"></h4>-->
-<!--</body>-->
-<!--</html>-->
