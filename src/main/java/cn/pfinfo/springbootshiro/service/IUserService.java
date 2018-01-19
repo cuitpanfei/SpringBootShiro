@@ -1,9 +1,9 @@
 /*
  * Copyright (C) 2017 Baidu, Inc. All Rights Reserved.
  */
-package cn.apopo.springbootshiro.service;
+package cn.pfinfo.springbootshiro.service;
 
-import cn.apopo.springbootshiro.domain.User;
+import cn.pfinfo.springbootshiro.entiry.User;
 
 /**
  * Created by qiaoshuang on 2017/1/4.
