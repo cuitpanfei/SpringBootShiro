@@ -63,4 +63,15 @@ public class RoleDaoImpl implements IRoleDao {
     public List<Role> find(Long... longs) {
         return null;
     }
+
+    /**
+     * 通过用户ID 获取其所有角色集合
+     *
+     * @param userId 用户ID
+     * @return 用户所有角色集合
+     */
+    @Override
+    public List<Role> getByUserId(Long userId) {
+        return null;
+    }
 }
