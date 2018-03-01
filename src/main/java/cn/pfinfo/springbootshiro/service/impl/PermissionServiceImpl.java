@@ -3,25 +3,34 @@
  */
 package cn.pfinfo.springbootshiro.service.impl;
 
-import cn.pfinfo.springbootshiro.dao.interf.IPermissionDao;
-import cn.pfinfo.springbootshiro.entiry.Permission;
-import cn.pfinfo.springbootshiro.service.IPermissionService;
-import org.springframework.stereotype.Service;
-
-import javax.annotation.Resource;
 import java.util.List;
 
+import javax.annotation.Resource;
+import javax.transaction.Transactional;
+
+import org.springframework.stereotype.Service;
+
+import cn.pfinfo.springbootshiro.dao.interf.IPermissionDao;
+import cn.pfinfo.springbootshiro.entity.Permission;
+import cn.pfinfo.springbootshiro.service.user.IPermissionService;
+
 /**
- * Created by qiaoshuang on 2017/1/5.
+ * Created by panfei on 2017/1/5.
  */
-@Service
+@Service("permissionService")
+@Transactional  
 public class PermissionServiceImpl implements IPermissionService {
 
     @Resource
-    private IPermissionDao permissionDao;
+    protected IPermissionDao permissionDao;
 
     @Override
     public List<Permission> getPermissionsByRoleId(Long roleId) {
-        return permissionDao.getByRoleId(roleId);
+        return null;
     }
+
+	@Override
+	public Permission getOne(Long id) {
+		return permissionDao.findOne(id);
+	}
 }

@@ -5,7 +5,7 @@
 
 	<groupId>cn.com.pfinfo</groupId>
 	<artifactId>springbootshiro</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>pf-0.0.1</version>
 	<packaging>jar</packaging>
 
 	<name>SpringBootShiro</name>
@@ -14,33 +14,47 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.5.2.RELEASE</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<version>1.5.9.RELEASE</version>
+		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
+		<orcl.version>11.2.0.3</orcl.version>
 		<shiro.version>1.3.2</shiro.version>
+		<ueditor.version>1.1.2-offical</ueditor.version>
+		<thymeleaf.version>3.0.9.RELEASE</thymeleaf.version>
+		<thymeleafextrasshiro.version>2.0.0</thymeleafextrasshiro.version>
+		<thymeleaf-layout-dialect.version>2.2.2</thymeleaf-layout-dialect.version>
+
 	</properties>
 
 	<dependencies>
-
+		<!-- spring boot web支持：mvc,aop... -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+			<!-- <exclusions>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-tomcat</artifactId>
+				</exclusion>
+			</exclusions> -->
+		</dependency>
+		<!-- <dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-jetty</artifactId>
+		</dependency> -->
 		<!-- thmleaf模板依赖. -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
 
-		<!-- spring boot web支持：mvc,aop... -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-
 		<!-- 热部署 -->
-		<dependency>
+ 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 			<scope>runtime</scope>
@@ -49,14 +63,46 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
+			<!-- <exclusions>
+				<exclusion>
+					<groupId>org.apache.tomcat</groupId>
+					<artifactId>tomcat-jdbc</artifactId>
+				</exclusion>
+			</exclusions> -->
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-configuration-processor</artifactId>
+			<optional>true</optional>
 		</dependency>
 
 		<!-- MySQL -->
-		<dependency>
+<!-- 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<scope>runtime</scope>
+		</dependency> -->
+
+		<dependency>
+			<groupId>com.oracle</groupId>
+			<artifactId>ojdbc6</artifactId>
+			<version>${orcl.version}</version>
 		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/com.alibaba/druid -->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>druid</artifactId>
+			<version>1.1.6</version>
+		</dependency>
+	
+		<!-- <dependency>
+			<groupId>cn.pfblog</groupId>
+			<artifactId>com.baidu.ueditor</artifactId>
+			<version>1.0.0-springboot</version>
+		</dependency> -->
+
 
 		<!-- shiro权限管理 -->
 		<dependency>
@@ -65,6 +111,40 @@
 			<version>${shiro.version}</version>
 		</dependency>
 
+		<!--shiro-->
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-ehcache</artifactId>
+            <version>${shiro.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.github.theborakompanioni</groupId>
+			<artifactId>thymeleaf-extras-shiro</artifactId>
+			<version>${thymeleafextrasshiro.version}</version>
+		</dependency>
+		
+		<!-- 配置使用redis启动器 -->
+        <!-- <dependency>
+            <groupId>org.crazycake</groupId>
+            <artifactId>shiro-redis</artifactId>
+            <version>2.4.2.1-RELEASE</version>
+        </dependency>
+
+		<dependency>
+			<groupId>redis.clients</groupId>
+			<artifactId>jedis</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-redis</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-redis</artifactId>
+			<version>RELEASE</version>
+		</dependency>-->
 		<!-- lombok -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
@@ -72,12 +152,36 @@
 		</dependency>
 
 		<!-- 单元测试 -->
+ <!--        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <scope>test</scope>
+        </dependency> -->
+		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-
+		<!-- Api  Start-->
+		<!-- <dependency>
+		  <groupId>io.github.yedaxia</groupId>
+		  <artifactId>japidocs</artifactId>
+		  <version>1.1</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>com.google.code.gson</groupId>
+		    <artifactId>gson</artifactId>
+		    <version>2.8.0</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>com.github.javaparser</groupId>
+		    <artifactId>javaparser-core</artifactId>
+		    <version>3.3.0</version>
+		</dependency> -->
+		<!-- Api End -->
 	</dependencies>
 
 	<build>
@@ -86,7 +190,7 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
-				    <fork>true</fork><!-- 如果没有该项配置，devtools不会起作用，即应用不会restart -->
+					<fork>true</fork><!-- 如果没有该项配置，devtools不会起作用，即应用不会restart -->
 				</configuration>
 			</plugin>
 		</plugins>

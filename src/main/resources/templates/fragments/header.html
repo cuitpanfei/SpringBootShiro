@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro"
+	data-th-fragment="header">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<title th:text="${siteTitle}">Spring Boot Shiro</title>
+<!-- CSRF -->
+<!-- <meta name="_csrf" th:content="${_csrf.token}"/> -->
+<!-- default header name is X-CSRF-TOKEN -->
+<!-- <meta name="_csrf_header" th:content="${_csrf.headerName}"/> -->
+
+<!-- Bootstrap CSS -->
+<link href="../../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+<link href="../../static/css/bootstrap-switch.min.css" th:href="@{/css/bootstrap-switch.min.css}" rel="stylesheet">
+<!-- style CSS -->
+<link href="../../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet">
+
+<!-- Font-Awesome CSS -->
+<link href="../../static/font-awesome/css/font-awesome.min.css" th:href="@{/font-awesome/css/font-awesome.min.css}" rel="stylesheet">
+
+<!-- animate CSS -->
+<link href="../../static/css/animate.css" th:href="@{/css/animate.css}" rel="stylesheet">
+<!-- layui CSS -->
+<link href="../../static/dist/css/layui.css" th:href="@{/dist/css/layui.css}" rel="stylesheet">
+<!-- header CSS -->
+<link href="../../static/css/header.css" th:href="@{/css/header.css}" rel="stylesheet">
+<link rel="stylesheet" href="../../static/css/webdev/index.css" th:href="@{/css/webdev/index.css}" >
+<link rel="stylesheet" href="../../static/css/webdev/index.css" th:href="@{/css/webdev/common.css}" >
+<link rel="stylesheet"  th:href="@{/jalendar/style/jalendar.css}"/>
+<!-- footer CSS -->
+<link href="../../static/css/header.css" th:href="@{/css/footer.css}" rel="stylesheet">
+
+<!-- login CSS -->
+<link href="../../static/css/user/user.min.css" th:href="@{/css/user/user.min.css}" rel="stylesheet">
+
+<!-- login CSS -->
+<link href="../../static/css/login.css" th:href="@{/css/login.css}" rel="stylesheet">
+<!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+<!--[if lt IE 9]>
+	  <script src="../../static/js/html5.min.js" th:src="@{/js/html5.min.js}"></script>
+	  <script src="../../static/js/respond.min.js" th:src="@{/js/respond.min.js}"></script>
+	<![endif]-->
+</head>
+<body>
+	<nav class="layui-header feiyu-header header-index  layui-bg-cyan">
+		<div class="layui-main">
+			<a class="logo" href="/" th:href="@{/}"> <img th:src="@{/img/logo.png}" alt="首页">
+			</a>
+			<div class="layui-form component">
+				<div class="layui-select-title">
+					<form id="searchForm" th:action="@{/search}" method="GET">
+						<input placeholder="搜索组件或模块" class="layui-input search-input" name="key" type="text" /><a href="javascript:;" onclick="document.getElementById('searchForm').submit();return false"><i
+							class="fa fa-search search-icon"></i></a>
+					</form>
+				</div>
+			</div>
+			<ul class="layui-nav layui-nav-left">
+				<li class="layui-nav-item"><a class="" href="/blogs?order=new&tag=1">最新</a></li>
+				<li class="layui-nav-item"><a class="" href="/blogs?order=hot&tag=2"><i class="fa fa-fire color-light-red"></i>&nbsp;最热</a></li>
+
+				<li class="layui-nav-item" shiro:user="true">
+						<a th:href="@{/user/info}" class="lauui-nav-avatar" id="userName"><shiro:principal property="userName"/><img th:src="@{/img/head/yq.png}"/><span class="layui-nav-more"></span></a>
+						    <dl class="layui-nav-child"> <!-- 二级菜单 -->
+						      <dd><a href="#0" th:href="@{/user/personal}"><i class="fa fa-user"></i>个人中心</a></dd>
+						      <dd><a href="" th:href="@{/user/cog}"><i class="fa fa-cog fa-spin"></i>我的设置</a></dd>
+						      <hr style="margin: 5px 0;"/>
+						      <dd><a href="/user/logout" th:href="@{/logout}"><i class="fa fa-sign-out"></i>退出登录</a></dd>
+						    </dl>
+				</li>
+
+				<li class="layui-nav-item" shiro:guest="true">
+						<a href="/loginOrRegister" >登陆/注册</a>
+				<!-- <span class="layui-nav-bar" ></span> -->
+			</ul>
+		</div>
+	</nav>
+</body>
+</html>

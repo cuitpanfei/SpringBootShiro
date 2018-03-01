@@ -1,0 +1,34 @@
+html{
+	min-width:1024px;
+}
+
+/* 头部 */
+.feiyu-header{height: 59px; border-bottom: 1px solid #404553;  background-color: #393D49;}
+.logo{position: absolute; left: 0; top: 4px;}
+.logo img{width: 50px; height: 50px;}
+
+.feiyu-header .layui-nav{position: absolute; right: 0; top: 0; padding: 0; background: none;}
+ .feiyu-header .layui-nav .layui-nav-item{margin: 0 10px; } 
+ .feiyu-header .layui-nav .layui-nav-item a>i{margin-left:4px}
+.feiyu-header .layui-nav .layui-nav-item[mobile]{display: none;}
+.feiyu-header .layui-nav .layui-nav-item[mobile]{display: none;}
+.feiyu-header .layui-container .logo{left: 15px;}
+.feiyu-header .layui-container .layui-nav{right: 15px;}
+
+
+.component{position: absolute; width: 200px; left: 120px; top: 16px; }
+.component .layui-input{height: 30px; padding-left: 12px; background-color: #424652; background-color: rgba(255,255,255,.05); border: none 0; color: #fff; font-size: 12px;}
+.component .search-input{width:calc(100% - 30px);float:left}
+.component .search-icon{float:right;font-size:18px;text-align:center; padding: 5px 0; color: #fff;color: rgba(255,255,255,.7);transition: all .3s;-webkit-transition: all .3s; }
+.component .search-input:focus + a .search-icon, .component .search-icon:hover{color: #fff; }
+.feiyu-header-demo .component{left: 185px;}
+
+
+
+.layui-nav .layui-nav-item a{padding:0 10px}
+.lauui-nav-avatar img {
+    width: 36px;
+    height: 36px;
+    margin-left: 10px;
+    border-radius: 100%;
+}

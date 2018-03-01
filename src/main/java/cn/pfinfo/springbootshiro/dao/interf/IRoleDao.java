@@ -1,19 +1,15 @@
 package cn.pfinfo.springbootshiro.dao.interf;
 
-import cn.pfinfo.springbootshiro.dao.base.IBaseDao;
-import cn.pfinfo.springbootshiro.entiry.Role;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.stereotype.Repository;
 
-import java.util.List;
+import cn.pfinfo.springbootshiro.dao.base.ICommonDao;
+import cn.pfinfo.springbootshiro.entity.Role;
 
 /**
  * Created by panfei on 2018/1/19.
  */
-public interface IRoleDao extends IBaseDao<Role,Long> {
-
-    /**
-     * 通过用户ID 获取其所有角色集合
-     * @param userId 用户ID
-     * @return 用户所有角色集合
-     */
-    List<Role> getByUserId(Long userId);
+@Repository
+public interface IRoleDao extends JpaRepository<Role, Long>,JpaSpecificationExecutor<Role>,ICommonDao<Role,Long> {
 }

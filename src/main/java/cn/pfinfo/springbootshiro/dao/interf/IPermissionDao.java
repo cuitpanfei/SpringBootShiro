@@ -1,19 +1,15 @@
 package cn.pfinfo.springbootshiro.dao.interf;
 
-import cn.pfinfo.springbootshiro.dao.base.IBaseDao;
-import cn.pfinfo.springbootshiro.entiry.Permission;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.stereotype.Repository;
 
-import java.util.List;
+import cn.pfinfo.springbootshiro.dao.base.ICommonDao;
+import cn.pfinfo.springbootshiro.entity.Permission;
 
 /**
  * Created by panfei on 2018/1/19.
  */
-public interface IPermissionDao extends IBaseDao<Permission,Long> {
-
-    /**
-     * 通过角色id获取该角色的权限集合
-     * @param roleId 角色id
-     * @return 该角色的权限集合
-     */
-    List<Permission> getByRoleId(Long roleId);
+@Repository
+public interface IPermissionDao extends JpaRepository<Permission, Long>,JpaSpecificationExecutor<Permission>, ICommonDao<Permission,Long> {
 }

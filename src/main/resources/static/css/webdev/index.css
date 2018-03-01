@@ -1,0 +1,90 @@
+.logo{
+    position: absolute;
+    color: #fff; 
+}
+
+.my-nav{
+    margin-left: 200px;
+}
+
+.component{
+    position: absolute; 
+    width: 200px; 
+    right: 200px; 
+    top: 16px; 
+}
+.login{
+    position: absolute; 
+    display: block;
+    padding: 0 20px;
+    color: rgba(255,255,255,.7);
+    transition: all .3s;
+    -webkit-transition: all .3s;
+    top:20px;
+    right: 100px;
+}
+.login:hover{
+    color: #fff;
+}
+.component .layui-input{
+    height: 30px; 
+    padding-left: 12px; 
+    background-color: #424652; 
+    background-color: rgba(255,255,255,.05); 
+    border: none 0; 
+    color: #fff; 
+    font-size: 12px;
+}
+.component .search-input{
+    width:calc(100% - 30px);
+    float:left;
+}
+.component .search-icon{
+    float:right;
+    font-size:18px;
+    text-align:center; 
+    padding: 5px 0; 
+    color: #fff;
+    color: rgba(255,255,255,.7);
+    transition: all .3s;
+    -webkit-transition: all .3s; 
+}
+.component .search-input:focus + a .search-icon, .component .search-icon:hover{
+    color: #fff; 
+}
+
+#banner > div > div[class^='pic']{
+	background:url("../../img/banner/u59.jpg") no-repeat;
+}
+#banner > div > div.pic1{
+    background-position:50% 0; 
+   
+}
+#banner > div > div.pic2{
+    background-position:center; 
+}
+#banner > div > div.pic3{
+    background-position:50% 100%; 
+}
+
+.over-hidden,.layui-colla-title{
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}
+#articles{
+    background-color:#FFF;
+}
+#articles li{
+   border-bottom: 1px dotted #e2e2e2;
+}
+#articles li:last-child {
+    border-bottom: none;
+}
+#articles img{
+    border-radius:2px;
+}
+#articles .layui-row{
+    padding:5px;
+    margin:10px auto;
+}

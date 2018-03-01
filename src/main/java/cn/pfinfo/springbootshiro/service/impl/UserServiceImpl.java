@@ -1,37 +1,58 @@
-/*
- * Copyright (C) 2017 Baidu, Inc. All Rights Reserved.
- */
 package cn.pfinfo.springbootshiro.service.impl;
 
-import cn.pfinfo.springbootshiro.dao.interf.IUserDao;
-import cn.pfinfo.springbootshiro.entiry.User;
-import cn.pfinfo.springbootshiro.service.IRoleService;
-import cn.pfinfo.springbootshiro.service.IUserService;
-import lombok.extern.log4j.Log4j;
+import javax.annotation.Resource;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.annotation.Resource;
+import cn.pfinfo.springbootshiro.dao.exception.DaoException;
+import cn.pfinfo.springbootshiro.dao.interf.IUserDao;
+import cn.pfinfo.springbootshiro.entity.User;
+import cn.pfinfo.springbootshiro.service.user.IUserService;
+import lombok.extern.log4j.Log4j;
 
 /**
- * Created by qiaoshuang on 2017/1/4.
+ * Created by panfei on 2018/1/4.
  */
-@Service
+@Transactional  
+@Service("userService")
 @Log4j
 public class UserServiceImpl implements IUserService {
-
-    @Resource
-    private IRoleService roleService;
 
     @Resource
     private IUserDao userDao;
 
     @Transactional(readOnly = true)
     @Override
-    public User findByUserName(String username) {
+    public User findByUserName(String username) throws DaoException {
         log.info("UserServiceImpl.findByUsername()");
-        User user = userDao.findbyUserName(username);
-        user.setRoleList(roleService.getRolesWithPermissionByUserId(user.getId()));
+        User user = userDao.findByUserName(username);
         return user;
     }
+
+	@Override
+	public Page<User> listUsersByNameLike(String name, Pageable pageable) {
+        Page<User> userPage = userDao.findAll(new Specification<User>(){  
+            @Override  
+            public Predicate toPredicate(Root<User> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {  
+            	 Predicate p1 = criteriaBuilder.like(root.get("name").as(String.class), "%"+name+"%");  
+            	 query.where(criteriaBuilder.and(p1));  
+                return query.getRestriction();  
+            }  
+        },pageable);  
+		return userPage;
+	}
+
+	@Override
+	public User getOne(Long id) {
+		return userDao.findOne(id);
+	}
+
 }

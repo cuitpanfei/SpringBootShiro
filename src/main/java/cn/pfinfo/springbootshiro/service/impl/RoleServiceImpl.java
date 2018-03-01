@@ -3,19 +3,23 @@
  */
 package cn.pfinfo.springbootshiro.service.impl;
 
-import cn.pfinfo.springbootshiro.dao.interf.IRoleDao;
-import cn.pfinfo.springbootshiro.entiry.Role;
-import cn.pfinfo.springbootshiro.service.IPermissionService;
-import cn.pfinfo.springbootshiro.service.IRoleService;
-import org.springframework.stereotype.Service;
-
-import javax.annotation.Resource;
 import java.util.List;
 
+import javax.annotation.Resource;
+import javax.transaction.Transactional;
+
+import org.springframework.stereotype.Service;
+
+import cn.pfinfo.springbootshiro.dao.interf.IRoleDao;
+import cn.pfinfo.springbootshiro.entity.Role;
+import cn.pfinfo.springbootshiro.service.user.IPermissionService;
+import cn.pfinfo.springbootshiro.service.user.IRoleService;
+
 /**
- * Created by qiaoshuang on 2017/1/5.
+ * Created by panfei on 2017/1/5.
  */
-@Service
+@Service("roleService")
+@Transactional
 public class RoleServiceImpl implements IRoleService {
 
     @Resource
@@ -26,10 +30,12 @@ public class RoleServiceImpl implements IRoleService {
 
     @Override
     public List<Role> getRolesWithPermissionByUserId(Long userId) {
-        List<Role> roles = roleDao.getByUserId(userId);
-        for (Role role : roles) {
-            role.setPermissions(permissionService.getPermissionsByRoleId(role.getId()));
-        }
+        List<Role> roles = null;
         return roles;
     }
+
+	@Override
+	public Role getOne(Long id) {
+		return roleDao.findOne(id);
+	}
 }

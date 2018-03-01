@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" data-th-fragment="footer">
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+<div class="marginTop"></div>
+	<footer class="footer navbar-fixed-bottom blog-footer layui-bg-cyan" >
+		<div class="container">
+			<p class="m-0 text-center text-white">
+				© 2017 <a href="http://www.pfinfo.com.cn">www.pfinfo.com.cn</a>
+			</p>
+		</div>
+
+		<!-- JavaScript -->
+		<script type="text/javascript" src="../../js/jquery.min.js" th:src="@{/js/jquery.min.js}"></script>
+		<script type="text/javascript" src="../../static/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+		<script type="text/javascript" src="../../js/bootstrap-switch.js" th:src="@{/js/bootstrap-switch.min.js}"></script>
+		<script type="text/javascript" src="/dist/layui.js"></script>
+		<script type="text/javascript" src="/js/background.js"></script>
+		<script  type="text/javascript">
+			layui.use([ 'element', 'util' ], function() {
+				//导航的hover效果、二级菜单等功能，需要依赖element模块
+				var element = layui.element,
+				util = layui.util;
+				//监听导航点击
+				element.on('nav', function(elem) {
+					layer.msg(elem.text());
+				});
+				//执行
+			  util.fixbar({
+				  bar1:true,
+				  css:{right:10,bottom:30},
+				  click: function(type){
+				      if(type === 'bar1'){
+				    	  window.location.href = '/user/article';  
+				        }
+			    }
+			  });
+			});
+		</script>
+	</footer>
+</body>
+</html>

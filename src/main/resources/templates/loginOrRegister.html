@@ -1,0 +1,69 @@
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/header :: header}">
+<body class="layui-bg-gray logineg"  >
+	<canvas id="root" style="position: fixed;  z-index:-1;"></canvas>
+	<div class="container">
+		<div class="row" >
+			<div class="col-lg-4 col-md-6 " >
+			</div>
+			<div class="col-lg-4 col-md-6 ">
+				<div class="layui-tab layui-tab-card">
+					<ul class="layui-tab-title">
+						<li class="layui-this">登录</li>
+						<li>注册</li>
+					</ul>
+					<div class="layui-tab-content">
+						<div class="layui-tab-item layui-show">
+							<div class="login-container">
+							<div class="row">
+								<div class="col-md-12"  th:text="${errmsg}" style="color:red"></div>
+							</div>
+								<div class="form-box">
+									<form action="/loginOrRegister" method="post">
+										<input name="userName" class=" top-radius" type="text" placeholder="用户名/邮箱">
+										 <input name="password" type="password" placeholder="密码">
+										 <input name="jcaptchaCode"class="bottom-radius" style="top:5px;width:50%;height:40px" type="text" placeholder="验证码"><img id="getYzm" alt="获取验证码" src="" class="bottom-radius" style="width:50%"/>
+										<button class="btn btn-info btn-block login" type="submit">登录</button>
+									</form>
+								</div>
+							</div>
+						</div>
+						<div class="layui-tab-item">
+							<div class="login-container">
+									<div class="row">
+										<div class="col-md-12"  th:text="${errmsg}" style="color:red"></div>
+									</div>
+								<div class="form-box">
+									<form action="/register" method="post">
+										<input name="userName" class=" top-radius"  type="text" placeholder="用户名/邮箱"> <input name="password" type="password" placeholder="密码"><input type="password"  class="bottom-radius" placeholder="确认密码">
+										<button class="btn btn-info btn-block login" type="submit">注册</button>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-4 "></div>
+		</div>
+	</div>
+	<footer th:replace="~{fragments/footer :: footer}" />
+	<script  type="text/javascript">
+		$(function(){
+            loop();
+		});
+	</script>
+	
+	<script  type="text/javascript" th:inline="javascript">
+	/*<![CDATA[*/
+	 $("#getYzm").click(function(){
+    	var url = "/getCode?width=100&"+"height=40&tockenId="+Math.random();
+    	this.src = url;
+    }).click().show();
+    /*]]>*/
+	</script>
+	
+</body>
+
+</html>

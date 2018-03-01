@@ -1,0 +1,92 @@
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/header :: header}">
+<body>
+	<div class="container">
+			<div class="user-main" style="min-height:0">
+				<ul class="layui-nav layui-nav-tree layui-nav-side" lay-filter="user">
+					<li class="">
+						<img src="/img/head/yq.png" width="100%">
+					</li>
+					<li class="layui-nav-item layui-this"><a href="#0"><i class="fa fa-user"></i>个人中心</a></li>
+					<li class="layui-nav-item"><a href="#0"><i class="fa fa-home"></i>个人主页</a></li>
+					<li class="layui-nav-item"><a href="#0"><i class="fa fa-cog"></i>基本设置</a></li>
+					<li class="layui-nav-item"><a href="/logout"><i class="fa fa-sign-out"></i>退出登录</a></li>
+				</ul>
+			</div>
+		<div class="row">
+			<div class="col-md-10 user-main col-md-offset-2">
+				<div class="layui-tab-brief layui-tab " lay-filter="userMain">
+					<ul class="layui-tab-title navbar-fixed-top">
+						<li class="layui-this"  lay-id="111">我的文章</li>
+						<li lay-id="222">我的归档</li>
+						<li lay-id="333">评论信息</li>
+					</ul>
+					<div class="layui-tab-content">
+						<div class="layui-tab-item layui-show">
+							<div class="" id="articles-page" style="text-align: center;">
+			                </div>
+						</div>
+						<div class="layui-tab-item">2</div>
+						<div class="layui-tab-item">3</div>
+					</div>
+				</div>
+				<div class="layui-tab-item">
+					<div th:replace="~{user/userinfo}"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<footer th:replace="~{fragments/footer :: footer}"></footer>
+	<script type="text/javascript" th:inline="javascript">
+	//ajax请求后台数据
+   	function getShopCustomerManagePageInfo(pageNumber,limit){
+		var _pageNumber = pageNumber||1;
+		var _limit = limit||10;
+   		$.ajax({
+   			type:"get",
+   			async:false,
+   			url:'/user/personal?pageNumber='+_pageNumber+'&limit='+_limit,
+   			success:function(data,status){
+   				console.log(status);
+   			}
+   		});
+   		
+   	}
+   	
+		layui.use(['element','laypage'],function(){
+			var element = layui.element;
+			var laypage= layui.laypage;
+			var layid = location.hash.replace(/^#user=/,'');
+			console.log("layid:"+layid);
+			element.tabChange('user',layid);
+			element.on('tab(user)',function(){
+				location.hash = 'user='+this.getAttribute('lay-id');
+				console.log("location:"+location);
+			});
+			//分页参数设置 这些全局变量关系到分页的功能
+		    var startAllAppoint = 0;//开始页数
+		    var limitAllAppoint = 10;//每页显示数据条数
+		    var currentPageAllAppoint = 1;//当前页数
+		    var dataLength =100;//数据总条数
+		  //执行一个laypage实例
+		  laypage.render({
+		    elem: 'articles-page'
+		    ,count: dataLength
+		    ,limit: limitAllAppoint   //每页显示的数据的条数,layui会根据count，limit进行分页的计算
+		    ,curr: currentPageAllAppoint
+		    ,layout: ['count', 'prev', 'page', 'next', 'limit']
+		    ,jump: function(e,first){
+		      console.log(e)
+		      if(!first){  
+		        window.location.href = '#articles-page?pageNumber='+e.curr;  
+		      }
+		    }
+		  });
+		});
+		$(function(){
+			$("nav.layui-header.feiyu-header").remove();
+		})
+	</script>
+</body>
+</html>

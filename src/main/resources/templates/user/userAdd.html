@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<!--
+  ~ Copyright (C) 2016 Baidu, Inc. All Rights Reserved.
+  -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>AddUser</title>
+</head>
+<body>
+    <h3>用户添加界面</h3>
+    <div th:text="${msg}"></div>
+    <form action="/user/userAdd" method="POST">
+    <input type="text" placeholder="username"/>
+    <input type="password" placeholder="password"/>
+    <input  type="submit" value="提交"/>
+    </form>
+</body>
+</html>

@@ -1,0 +1,65 @@
+body .user-main {
+    position: relative;
+    min-height: 600px;
+}
+.layui-nav-child dd{
+	font-size:28px;
+    line-height: 32px;
+}
+ .layui-nav-child a i {
+    position: relative;
+    top: 2px;
+    margin-right:10px;
+    font-size: 18px;
+}
+.marginTop {
+    margin-top: 15px;
+}
+
+.info-home {
+    position: relative;
+    padding: 30px 0 30px;
+    text-align: center;
+}
+.info-home img {
+    width: 180px;
+    height: 180px;
+    border-radius: 100%;
+}
+.info-home p.info{
+    position: relative;
+    padding: 30px 0 30px;
+    text-align: center;
+}
+.info-panel {
+    margin-bottom: 15px;
+    border-radius: 2px;
+    background-color: #fff;
+    box-shadow: 0 1px 2px 0 rgba(0,0,0,.05);
+}
+.panel-body{
+	min-height:180px;
+	margin-bottom:60px;
+}
+
+.user-main > .layui-nav {
+    left: 0;
+    top: 0;
+    z-index: 1000;
+    height: 100%;
+    padding: 10px 0;
+}
+
+.user-main > .layui-nav i {
+    position: relative;
+    top: 2px;
+    font-size: 20px;
+    padding: 0 15px;
+    margin-right: 10px;
+}
+.layui-nav .layui-this::after, .layui-nav-bar, .layui-nav-tree .layui-nav-itemed::after {
+    background-color: #4CB1DD;
+}
+.layui-nav-tree .layui-nav-child dd.layui-this, .layui-nav-tree .layui-nav-child dd.layui-this a, .layui-nav-tree .layui-this, .layui-nav-tree .layui-this > a, .layui-nav-tree .layui-this > a:hover {
+    background-color: #58b6e0;
+}

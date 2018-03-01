@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="ztree/css/zTreeStyle/zTreeStyle.css" type="text/css">
+<script type="text/javascript" src="ztree/js/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="ztree/js/jquery.ztree.core-3.5.js"></script>
+
+<SCRIPT type="text/javascript">
+		var setting={
+			data: {
+				simpleData: {
+					enable: true
+				}
+			}
+		};
+    	$(document).ready(function(){
+    		$.ajax({
+    			url:'organization!findAll',
+    			dataType:'json',
+    			success:function(data){
+					$.fn.zTree.init($("#dv"), setting, data);
+    			}
+    		});
+		});
+    </SCRIPT>
+</head>
+<body>
+<div  id="dv"   class="ztree" ></div>
+</body>
+</html>
