@@ -33,21 +33,23 @@ public class UploadController {
     @Autowired
     private Environment env;
 	//上传文件的保存路径
-    protected String dirTemp = "image/temp";
+    protected String dirTemp = "temp";
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
     @ResponseBody
 	protected Map<String,Object> doPost(@RequestParam(value = "editormd-image-file", required = false) MultipartFile file, HttpServletRequest request) {
         Map<String,Object> resultMap = new HashMap<String,Object>();
         try{
-            //文件保存目录路径
+        	//文件保存真实目录
             String localPath = env.getProperty("REAL_SAVE_IMAGE_PATH");
+            //图片服务器访问前缀
             String preImageDomain = env.getProperty("UPLOAD_IMAGE_SERVER_PRE_URL");
+            String fomat = env.getProperty("DIR_SIMPLE_DATE_FORMAT");
             String compon = localPath;
             String savePath = compon;
 
             // 临时文件目录
             String tempPath =savePath+ dirTemp;
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyyMM");
+            SimpleDateFormat sdf = new SimpleDateFormat(fomat);
             String ymd = sdf.format(new Date());
             String imageDate="/image/" + ymd + "/";
             savePath += imageDate;
