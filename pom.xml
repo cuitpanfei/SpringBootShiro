@@ -182,6 +182,12 @@
 		    <version>3.3.0</version>
 		</dependency> -->
 		<!-- Api End -->
+		
+		<dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.31</version>
+        </dependency>
 	</dependencies>
 
 	<build>
