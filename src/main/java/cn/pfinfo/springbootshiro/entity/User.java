@@ -2,6 +2,7 @@ package cn.pfinfo.springbootshiro.entity;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -11,14 +12,10 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -56,19 +53,13 @@ public class User implements Serializable {
 	@Column(name="user_name")
 	private String userName;
 	
-	@ManyToOne
-	@JoinColumn(name="organization_id")
-	@JsonBackReference
-	private Organization organization;
-
-
 	//bi-directional many-to-one association to UserRole
 	@OneToMany(mappedBy="user" ,fetch = FetchType.EAGER)
-	private Set<UserRole> userRoles;
+	private Set<UserRole> userRoles = new HashSet<>();
 	
 	//bi-directional many-to-one association to UserRole
 	@OneToMany(mappedBy="user" ,fetch = FetchType.EAGER)
-	private Set<Schedule> schedules;
+	private Set<Schedule> schedules = new HashSet<>();
 
 	public Schedule addSchedule(Schedule schedules) {
 		getSchedules().add(schedules);
@@ -115,5 +106,13 @@ public class User implements Serializable {
 	public String getSaltTo(){
 		return salt==null?this.userName+"":this.userName+salt;
 	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", name=" + name + ", state=" + state + ", userName=" + userName + ", userRoles=" + userRoles + "]";
+	}
+
+	
+	
 	
 }

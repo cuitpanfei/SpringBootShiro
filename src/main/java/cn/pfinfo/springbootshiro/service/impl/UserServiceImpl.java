@@ -12,7 +12,6 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import cn.pfinfo.springbootshiro.dao.exception.DaoException;
 import cn.pfinfo.springbootshiro.dao.interf.IUserDao;
 import cn.pfinfo.springbootshiro.entity.User;
 import cn.pfinfo.springbootshiro.service.user.IUserService;
@@ -31,10 +30,10 @@ public class UserServiceImpl implements IUserService {
 
     @Transactional(readOnly = true)
     @Override
-    public User findByUserName(String username) throws DaoException {
+    public User findByUserName(String username){
         log.info("UserServiceImpl.findByUsername()");
         User user = userDao.findByUserName(username);
-        return user;
+        return user==null?new User():user;
     }
 
 	@Override
@@ -53,6 +52,11 @@ public class UserServiceImpl implements IUserService {
 	@Override
 	public User getOne(Long id) {
 		return userDao.findOne(id);
+	}
+
+	@Override
+	public void save(User user) {
+		userDao.save(user);
 	}
 
 }

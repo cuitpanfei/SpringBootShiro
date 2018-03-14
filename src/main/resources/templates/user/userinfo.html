@@ -1,7 +1,7 @@
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"  data-th-fragment="userinfo" >
-<body th:if="${userinfo != null}" th:object="${userinfo.user}">
-	<div th:if="${userinfo.user!=null}">
-		<div class="container">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"  th:fragment="userinfo" >
+<body th:object="${user}">
+	<div th:if="*{id !=null}">
+		<div class="container" style="width:100%">
 			<div class="row">
 				<div class="col-md-12 info-home info-panel ">
 					<img th:src="@{/img/head/yq.png}" />
@@ -12,64 +12,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="layui-container">
-			<div class="layui-row layui-col-space15">
-				<div class="layui-col-md6 fly-home-jie">
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<span th:text="|*{userName} |">我</span>最近的提问
-						</div>
-						<div class="panal-body layui-collapse">
-							<div class="layui-colla-item">
-								<h2 class="layui-colla-title">
-									问题1<span style="float: right">待解决</span>
-								</h2>
-								<div class="layui-colla-content">问题问题问题问题问题问题问题问题问题问题</div>
-							</div>
-							<div class="layui-colla-item">
-								<h2 class="layui-colla-title">
-									问题2<span style="float: right">已解决</span>
-								</h2>
-								<div class="layui-colla-content">问题问题问题问题问题问题问题问题问题问题</div>
-							</div>
-							<div class="layui-colla-item">
-								<h2 class="layui-colla-title">
-									问题3 <span style="float: right">已解决</span>
-								</h2>
-								<div class="layui-colla-content">问题问题问题问题问题问题问题问题问题问题</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="layui-col-md6 fly-home-jie">
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<span th:text="|*{userName} |">我</span>最近的回答
-						</div>
-						<div class="panal-body layui-collapse">
-							<div class="layui-colla-item">
-								<h2 class="layui-colla-title">
-									回答1<span style="float: right">被采纳</span>
-								</h2>
-								<div class="layui-colla-content">回答回答回答回答回答回答回答回答回答回答回答</div>
-							</div>
-							<div class="layui-colla-item">
-								<h2 class="layui-colla-title">
-									回答2<span style="float: right">被采纳</span>
-								</h2>
-								<div class="layui-colla-content">回答回答回答回答回答回答回答</div>
-							</div>
-							<div class="layui-colla-item">
-								<h2 class="layui-colla-title">
-									回答3<span style="float: right">未采纳</span>
-								</h2>
-								<div class="layui-colla-content">回答回答回答回答回答回答回答回答回答回答</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+		<div th:replace="~{user/fragments :: dynamic(user=${session.userinfo})}"></div>
 	</div>
 </body>
 </html>

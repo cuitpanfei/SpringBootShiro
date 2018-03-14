@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{error/error_header :: header(title='飞羽-404页面')}">
+<body class="body">
+    <div class="layui-elem-field">
+        <h3>404</h3>
+	    <p class="msg">Page Not Found</p>
+	    <p class="text">对不起,没有找到您所需要的页面,可能是URL不确定,或者页面已被移除。</p>
+	    <div class="layui-btn-box">
+	        <a class="layui-btn layui-btn-small" href="javascript:;">返回首页</a>
+	        <a class="layui-btn layui-btn-danger layui-btn-small " href="javascript:;">返回上页</a>
+    	</div>
+    </div>
+	<footer th:replace="~{error/error_footer :: footer}"></footer>
+</body>
+
+</html>

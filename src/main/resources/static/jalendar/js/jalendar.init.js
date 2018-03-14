@@ -9,11 +9,13 @@ function initmenu(){
 function updateTransaction(_str) {
     $.ajax({
         type: "get",
-        url: _str+"/user/enevt/getEvents",
-        success: function (data) {
-            var _Enevts = mosaicEvents(data);
-            $("#jalendar").html("");
-            $("#jalendar").append(_Enevts);
+        url: _str,
+        success: function (data,status,code) {
+        	if(status=='success'){
+	        	var _Enevts = mosaicEvents(data);
+	        	$("#jalendar").html("");
+	        	$("#jalendar").append(_Enevts);
+        	}
         },
         error:function(data,status){
         	console.log(status);
@@ -26,9 +28,14 @@ function updateTransaction(_str) {
 
 function mosaicEvents(obj) {
     var html = "";
-    obj.forEach(function(da){
-    	html = html + '<div class="added-event" data-date="'+getNowFormatDate(da.creatdate)+'" data-title="'+da.scheduleContent+'"></div>\n';	
-    });
+    try{
+    	obj.forEach(function(da){
+        	html = html + '<div class="added-event" data-date="'+getNowFormatDate(da.creatdate)+'" data-title="'+da.schedulecontent+'"></div>\n';	
+        });
+    }catch(e){
+    	console.log(e.message);
+    }
+    
     return html;
 }
 

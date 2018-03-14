@@ -1,6 +1,7 @@
 package cn.pfinfo.springbootshiro.entity;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -33,31 +34,24 @@ public class Permission implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name="PERMISSION_ID_GENERATOR" )
+	@SequenceGenerator(name="PERMISSION_ID_GENERATOR")
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="PERMISSION_ID_GENERATOR")
 	private Long id;
 
-	private byte available;
+	/** 是否可用0：可用，1：禁用 */
+	private byte available = 0;
 
 	private String name;
-
-	@Column(name="parent_id")
-	private Long parentId;
-
-	@Column(name="parent_ids")
-	private String parentIds;
-
+	/** 格式：perms[user:view] */
 	private String permission;
 
 	@Column(name="resource_type")
 	private String resourceType;
 
-	private String url;
-
 	//bi-directional many-to-one association to RolePermission
 	@OneToMany(mappedBy="permission",fetch = FetchType.EAGER)
 	@JsonBackReference
-	private Set<RolePermission> rolePermissions;
+	private Set<RolePermission> rolePermissions  = new HashSet<>();
 
 	public RolePermission addRolePermission(RolePermission rolePermission) {
 		getRolePermissions().add(rolePermission);

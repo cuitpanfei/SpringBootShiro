@@ -6,7 +6,6 @@ package cn.pfinfo.springbootshiro.service.user;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import cn.pfinfo.springbootshiro.dao.exception.DaoException;
 import cn.pfinfo.springbootshiro.entity.User;
 import cn.pfinfo.springbootshiro.service.IBaseService;
 
@@ -15,7 +14,9 @@ import cn.pfinfo.springbootshiro.service.IBaseService;
  */
 public interface IUserService extends IBaseService<User>{
 
-    User findByUserName(String username) throws DaoException;
+    User findByUserName(String username);
 
 	Page<User> listUsersByNameLike(String name, Pageable pageable);
+
+	void save(User user);
 }

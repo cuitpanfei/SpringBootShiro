@@ -60,10 +60,10 @@
 				<li class="layui-nav-item"><a class="" href="/blogs?order=hot&tag=2"><i class="fa fa-fire color-light-red"></i>&nbsp;最热</a></li>
 
 				<li class="layui-nav-item" shiro:user="true">
-						<a th:href="@{/user/info}" class="lauui-nav-avatar" id="userName"><shiro:principal property="userName"/><img th:src="@{/img/head/yq.png}"/><span class="layui-nav-more"></span></a>
+						<a th:href="@{'/u/personal?id='+${session.userSessionId}}" class="lauui-nav-avatar" id="userName"><shiro:principal property="userName"/><img th:src="@{/img/head/yq.png}"/><span class="layui-nav-more"></span></a>
 						    <dl class="layui-nav-child"> <!-- 二级菜单 -->
-						      <dd><a href="#0" th:href="@{/user/personal}"><i class="fa fa-user"></i>个人中心</a></dd>
-						      <dd><a href="" th:href="@{/user/cog}"><i class="fa fa-cog fa-spin"></i>我的设置</a></dd>
+						      <dd><a href="#0"  th:href="@{'/u/personal?id='+${session.userSessionId}}"><i class="fa fa-user"></i>个人中心</a></dd>
+						      <dd><a href="" th:href="@{/u/cog}"><i class="fa fa-cog fa-spin"></i>我的设置</a></dd>
 						      <hr style="margin: 5px 0;"/>
 						      <dd><a href="/user/logout" th:href="@{/logout}"><i class="fa fa-sign-out"></i>退出登录</a></dd>
 						    </dl>

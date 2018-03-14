@@ -1,12 +1,19 @@
 package cn.pfinfo.springbootshiro.entity;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -39,6 +46,10 @@ public class Article {
 	 */
 	private String title;
 	/**
+	 * 是否原创
+	 */
+	private Integer original = 1;
+	/**
 	 * 文章分类
 	 */
 	private String type;
@@ -48,22 +59,36 @@ public class Article {
 	private String author;
 
 	/**
-	 * 标签云
+	 * 标签云(逗号分隔)
 	 */
 	private String label;
 	/**
-	 * 文章描述
+	 * 文章内容(editormd-markdown-doc)
 	 */
 	private String description;
+	/**
+	 * 文章内容(html)
+	 */
+	@Lob
+	private String udescription;
+	
 
 	/**
-	 * 文章备注
+	 * 文章简介
 	 */
 	private String remark;
 	/**
-	 * 状态,0：正常；1：删除
+	 * 附件id（100,201,335,405）
 	 */
-	private Integer status;
+	@OneToMany(mappedBy="article" ,fetch = FetchType.EAGER)
+	private Set<Attachment> attachments = new HashSet<>();
+	/**
+	 * 状态,0：正常；1：删除2：草稿
+	 */
+	private Integer status = 2;
+	
+	@OneToOne(cascade={CascadeType.ALL})
+	private ArticleStaticInfo staticinfo;
 	
 	/**
 	 * 注解@Transient 表示忽略这个字段对数据库的映射，
@@ -84,5 +109,16 @@ public class Article {
 	@Temporal(TemporalType.DATE)
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date updateTime;
+	
+	public Attachment addAttachment(Attachment attachment){
+		getAttachments().add(attachment);
+		attachment.setArticle(this);
+		return attachment;
+	}
+	public Attachment removeAttachment(Attachment attachment){
+		getAttachments().remove(attachment);
+		attachment.setArticle(null);
+		return attachment;
+	}
 
 }

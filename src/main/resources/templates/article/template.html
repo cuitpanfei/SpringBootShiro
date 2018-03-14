@@ -1,18 +1,26 @@
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml"xmlns:th="http://www.thymeleaf.org">
-<head>
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"xmlns:th="http://www.thymeleaf.org" th:fragment="editormd_content">
+<head th:object="${article}" >
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<meta name="Author" th:content="*{author}">
+<meta name="Keywords" th:content="*{label}">
+<meta name="Description" th:content="*{remark}">
+<title th:text="*{title}"></title>
 <link rel="stylesheet" th:href="@{~/editormd/css/editormd.preview.min.css}" />
 <link rel="stylesheet" th:href="@{~/editormd/css/editormd.min.css}" />
 </head>
-<body>
-
-<!-- 因为我们使用了dark主题，所以在容器div上加上dark的主题类，实现我们自定义的代码样式 -->
-<div class="content editormd-preview-theme-dark" id="content" th:text="${article.text }"></div>
-<script src="@{~/js/jquery-3.1.1.min.js}"></script>
-<script src="@{~/editormd/lib/marked.min.js}"></script>
-<script src="@{~/editormd/lib/prettify.min.js}"></script>
-<script src="@{~/editormd/editormd.min.js}"></script>
+<body th:object="${article}" >
+<div class="layui-container">
+	<div class="layui-row">
+		<div class="layui-col-md10 layui-col-md-offset1">
+			<div class="content" id="content" th:utext="*{udescription}" style="width:90%"></div>
+		</div>
+	</div>
+</div>
+<script th:src="@{~/js/jquery-3.1.1.min.js}"></script>
+<script th:src="@{~/editormd/lib/marked.min.js}"></script>
+<script th:src="@{~/editormd/lib/prettify.min.js}"></script>
+<script th:src="@{~/editormd/editormd.min.js}"></script>
 <script type="text/javascript">
   editormd.markdownToHTML("content");
 </script>

@@ -1,6 +1,7 @@
 package cn.pfinfo.springbootshiro.entity;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -40,29 +41,14 @@ public class Role implements Serializable {
 
 	private String role;
 
-	//bi-directional many-to-one association to AccessControl
-	@OneToMany(mappedBy="role",fetch = FetchType.EAGER)
-	private Set<AccessControl> accessControls;
-
 	//bi-directional many-to-one association to RolePermission
 	@OneToMany(mappedBy="role",fetch = FetchType.EAGER)
-	private Set<RolePermission> rolePermissions;
+	private Set<RolePermission> rolePermissions = new HashSet<>();
 
 	//bi-directional many-to-one association to UserRole
 	@OneToMany(mappedBy="role",fetch = FetchType.EAGER)
-	private Set<UserRole> userRoles;
+	private Set<UserRole> userRoles = new HashSet<>();
 
-	public AccessControl addAccessControl(AccessControl accessControl) {
-		getAccessControls().add(accessControl);
-		accessControl.setRole(this);
-		return accessControl;
-	}
-
-	public AccessControl removeAccessControl(AccessControl accessControl) {
-		getAccessControls().remove(accessControl);
-		accessControl.setRole(null);
-		return accessControl;
-	}
 
 	public RolePermission addRolePermission(RolePermission rolePermission) {
 		getRolePermissions().add(rolePermission);
