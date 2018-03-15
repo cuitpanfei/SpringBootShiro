@@ -8,7 +8,7 @@
 	<footer class="footer navbar-fixed-bottom blog-footer layui-bg-cyan" >
 		<div class="container">
 			<p class="m-0 text-center text-white">
-				© 2017 <a href="http://www.pfinfo.com.cn">www.pfinfo.com.cn</a>
+				&copy; 2017 <a href="http://www.pfinfo.com.cn">www.pfinfo.com.cn</a>
 			</p>
 		</div>
 
@@ -18,6 +18,11 @@
 		<script type="text/javascript" src="/dist/layui.js"></script>
 		<script type="text/javascript" src="/js/background.js"></script>
 		<script  type="text/javascript">
+			String.prototype.Trim=function(str){  
+				var re = new RegExp('^'+str+'*|'+str+'*$',"g");
+				var value = this.replace(re,'')  ;
+			    return   value;  
+			}
 			layui.use([ 'element', 'util' ], function() {
 				//导航的hover效果、二级菜单等功能，需要依赖element模块
 				var element = layui.element,
