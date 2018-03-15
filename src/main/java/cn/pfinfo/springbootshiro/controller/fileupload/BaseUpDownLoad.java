@@ -2,21 +2,20 @@ package cn.pfinfo.springbootshiro.controller.fileupload;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
-import org.springframework.stereotype.Component;
 
 import cn.pfinfo.springbootshiro.entity.Attachment;
 import cn.pfinfo.springbootshiro.service.common.IAttachmentService;
 
 public abstract class BaseUpDownLoad {
+	
     protected Environment env;
     protected IAttachmentService attachmentService;
 
     //上传文件的保存路径
     public final static String dirTemp = "temp";
     /**
-     * 文件的访问前缀，默认为本服务器url
+     * 文件的访问前缀，默认为本服务器url，子类通过{@link #env}获取配置，使子类满足不同的文件前缀需求
      */
     protected String preDomain;
     /** 文件保存真实目录 */
@@ -44,7 +43,7 @@ public abstract class BaseUpDownLoad {
 
 
 	/**
-	 * 根据上下文环境查询附件信息
+	 * 根据上下文环境去查询附件信息
 	 * @param request
 	 * @return
 	 */

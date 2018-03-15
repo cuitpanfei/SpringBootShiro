@@ -7,9 +7,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-import cn.pfinfo.springbootshiro.service.common.IAttachmentService;
 import org.springframework.core.env.Environment;
-import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
 import cn.pfinfo.springbootshiro.common.config.shiro.ShiroUtil;
@@ -20,6 +18,7 @@ import cn.pfinfo.springbootshiro.common.util.file.FileType;
 import cn.pfinfo.springbootshiro.common.util.file.FileTypeJudgeUtil;
 import cn.pfinfo.springbootshiro.common.util.file.FileUtil;
 import cn.pfinfo.springbootshiro.entity.Attachment;
+import cn.pfinfo.springbootshiro.service.common.IAttachmentService;
 
 /**
  * 公共上传控制器
@@ -46,7 +45,9 @@ public abstract class BaseUpLoadController extends BaseUpDownLoad {
 	    info.setUserId(ShiroUtil.getCurrentUserId());
 	    // 上传文件原名
 	    info.setOldName(file.getOriginalFilename());
+	    // 上传文件大小
 	    info.setFileSize(file.getSize());
+	    // 上传文件类型
 	    info.setType(file.getContentType());
 	    Attachment attachment = findAttachment(HttpContextUtils.getHttpServletRequest());
 	    Map<String,Object> map = new HashMap<>(16);

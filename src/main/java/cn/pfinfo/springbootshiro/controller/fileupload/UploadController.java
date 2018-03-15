@@ -2,8 +2,6 @@ package cn.pfinfo.springbootshiro.controller.fileupload;
 
 import javax.servlet.http.HttpServletRequest;
 
-import cn.pfinfo.springbootshiro.service.common.IAttachmentService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import cn.pfinfo.springbootshiro.common.exception.BDException;
 import cn.pfinfo.springbootshiro.common.util.Result;
 import cn.pfinfo.springbootshiro.entity.Attachment;
+import cn.pfinfo.springbootshiro.service.common.IAttachmentService;
 
 /**
  * 图片上传
@@ -56,7 +55,7 @@ public class UploadController extends BaseUpLoadController {
 
 	@Override
 	protected Attachment findAttachment(HttpServletRequest request) {
-		return null;
+		return attachmentService.findOne((Long)request.getAttribute("authorid"),request.getRequestURI());
 	}
 
 }
